@@ -107,10 +107,10 @@ class CurrentWeather {
       humidity: map['humidity'] as int,
       dewPoint: map['dew_point'] * 1.0
           as double, // dew_point * 1.0 converts int to double
-      uvi: map['uvi'] as double,
+      uvi: map['uvi'] * 1.0 as double,
       clouds: map['clouds'] as int,
       visibility: map['visibility'] as int,
-      windSpeed: map['wind_speed'] as double,
+      windSpeed: map['wind_speed'] * 1.0 as double,
       windDeg: map['wind_deg'] as int,
       weather: map['weather'] != null
           ? List<WeatherList>.from(

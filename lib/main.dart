@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
-import 'home_page.dart';
+import 'pages/home_page.dart';
 
 Future<Position> _determinePosition() async {
   bool serviceEnabled;
@@ -29,7 +29,8 @@ Future<Position> _determinePosition() async {
     );
   }
 
-  return await Geolocator.getCurrentPosition();
+  return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best);
 }
 
 Future main() async {
