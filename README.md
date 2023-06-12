@@ -1,6 +1,6 @@
-# Weather App
+# Weather App ☀️ 🌕 ⛈️
 
-> Todo
+## Todo
 
 - [ ] Build Everything without 3rd party state management (In Progress)
 - [ ] Build Everything using Provider
@@ -9,5 +9,4 @@
 
 ## Preview
 
-<img src="docs/1.png">
-
+<img src="docs/1.png" height="500px">
