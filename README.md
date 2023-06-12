@@ -2,10 +2,10 @@
 
 > Todo
 
-- [x] Build Everything without 3rd party state management
-- [x] Build Everything using Provider
-- [x] Build Everything using BLoC
-- [x] Build Everything using Riverpod
+- [ ] Build Everything without 3rd party state management (In Progress)
+- [ ] Build Everything using Provider
+- [ ] Build Everything using BLoC
+- [ ] Build Everything using Riverpod
 
 ## Preview
 
