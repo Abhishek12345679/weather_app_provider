@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -29,12 +28,7 @@ class _HomePageState extends State<HomePage> {
 
     final currentWeatherJSON = json.decode(response.body);
 
-    log('current weather: $currentWeatherJSON');
-
-    // if (currentWeatherJSON != null) {
-    final weather = WeatherType.fromMap(currentWeatherJSON);
-    return weather;
-    // }
+    return WeatherType.fromMap(currentWeatherJSON);
   }
 
   @override
@@ -45,49 +39,64 @@ class _HomePageState extends State<HomePage> {
         final currentWeather = snapshot.data;
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-            log(currentWeather.toString());
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Today\'s Weather'),
               ),
-              body: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(20.0),
-                    height: 300,
-                    width: double.maxFinite,
-                    child: Column(children: [
-                      Container(
-                        height: 200,
-                        width: double.maxFinite,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 400,
+                      width: double.maxFinite,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Temperature",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              fontSize: 25,
-                            ),
+                          Image.network(
+                            'https://openweathermap.org/img/wn/${currentWeather?.current.weather?[0].icon}@4x.png',
+                            width: 150,
+                            height: 150,
                           ),
-                          Text(
-                            '${currentWeather?.current.temp} C',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '${currentWeather?.timezone}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  '${currentWeather?.current.temp} °C',
+                                  style: const TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Feels like ${currentWeather?.current.feelsLike}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
-                      )
-                    ]),
-                  ),
-                ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
 
           default:
-            return Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
         }
       },
     );

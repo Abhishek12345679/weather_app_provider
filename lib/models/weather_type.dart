@@ -57,7 +57,7 @@ class CurrentWeather {
   final double windSpeed;
   final int windDeg;
   // final double? windGust;
-  // final List<WeatherList>? weather;
+  final List<WeatherList>? weather;
 
   const CurrentWeather({
     required this.dt,
@@ -74,7 +74,7 @@ class CurrentWeather {
     required this.windSpeed,
     required this.windDeg,
     // this.windGust,
-    // required this.weather,
+    required this.weather,
   });
 
   Map<String, dynamic> toMap() {
@@ -92,7 +92,7 @@ class CurrentWeather {
       'visibility': visibility,
       'windSpeed': windSpeed,
       'windDeg': windDeg,
-      // 'weather': weather?.map((x) => x.toMap()).toList(),
+      'weather': weather,
     };
   }
 
@@ -105,19 +105,20 @@ class CurrentWeather {
       feelsLike: map['feels_like'] as double,
       pressure: map['pressure'] as int,
       humidity: map['humidity'] as int,
-      dewPoint: map['dew_point'] as double,
+      dewPoint: map['dew_point'] * 1.0
+          as double, // dew_point * 1.0 converts int to double
       uvi: map['uvi'] as double,
       clouds: map['clouds'] as int,
       visibility: map['visibility'] as int,
       windSpeed: map['wind_speed'] as double,
       windDeg: map['wind_deg'] as int,
-      // weather: map['weather'] != null
-      //     ? List<WeatherList>.from(
-      //         (map['weather'] as List<int>).map<WeatherList?>(
-      //           (x) => WeatherList.fromMap(x as Map<String, dynamic>),
-      //         ),
-      //       )
-      //     : null,
+      weather: map['weather'] != null
+          ? List<WeatherList>.from(
+              (map['weather']).map<WeatherList?>(
+                (x) => WeatherList.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
     );
   }
 
