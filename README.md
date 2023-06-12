@@ -1,16 +1,13 @@
-# weather_app_provider
+# Weather App
 
-A new Flutter project.
+> Todo
 
-## Getting Started
+- [x] Build Everything without 3rd party state management
+- [x] Build Everything using Provider
+- [x] Build Everything using BLoC
+- [x] Build Everything using Riverpod
 
-This project is a starting point for a Flutter application.
+## Preview
 
-A few resources to get you started if this is your first Flutter project:
+<img src="docs/1.png">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
