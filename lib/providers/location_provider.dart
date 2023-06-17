@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-class WeatherProvider extends ChangeNotifier {
+class LocationProvider extends ChangeNotifier {
   late final Position? currentLocation;
+  bool isLoading = false;
 
-  Future<void> _getCurrentLocation() async {
+  Future<void> getCurrentLocation() async {
+    isLoading = true;
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -32,6 +34,7 @@ class WeatherProvider extends ChangeNotifier {
         desiredAccuracy: LocationAccuracy.best);
 
     currentLocation = curLoc;
+    isLoading = false;
     notifyListeners();
   }
 

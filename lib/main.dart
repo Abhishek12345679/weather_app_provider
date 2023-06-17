@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app_provider/providers/weather_provider.dart';
+import 'package:weather_app_provider/providers/location_provider.dart';
 
 import 'pages/home_page.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (context) => WeatherProvider(),
+            create: (context) => LocationProvider(),
           )
         ],
         child: MaterialApp(
