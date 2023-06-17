@@ -32,7 +32,7 @@ class _WeatherGridTileState extends State<WeatherGridTile> {
             Text(
               widget.item.value.toString(),
               style: const TextStyle(
-                fontSize: 40,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),

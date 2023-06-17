@@ -43,29 +43,6 @@ class _HomePageState extends State<HomePage> {
     return '$hour:$minute';
   }
 
-  // Map<String, dynamic> getWeatherGrid(Map<String, dynamic> currentWeather) {
-  //   final newList = currentWeather.entries.map((e) {
-  //     String newKey = "";
-  //     switch (e.key) {
-  //       case 'Dt':
-  //         newKey = "Current Time";
-  //     }
-  //     final underScoreRemoved = e.key.replaceAll(RegExp(r'_'), ' ');
-  //     final capitalized = underScoreRemoved
-  //         .split(' ')
-  //         .map((e) => e[0].toUpperCase() + e.substring(1))
-  //         .join(' ');
-  //     return {
-  //       capitalized: e.value,
-  //     };
-  //   });
-  //   final newMap = {
-  //     for (var entry in newList)
-  //       entry.keys.elementAt(0): entry.values.elementAt(0)
-  //   };
-  //   return newMap;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
