@@ -1,47 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app_provider/providers/location_provider.dart';
+import 'package:weather_app_provider/providers/weather_provider.dart';
 
 import 'pages/home_page.dart';
 
-Future<Position> _determinePosition() async {
-  bool serviceEnabled;
-  LocationPermission permission;
-
-  serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-  if (!serviceEnabled) {
-    return Future.error('Location services are disabled.');
-  }
-
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
-    }
-  }
-
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error(
-      'Location permissions are permanently denied, we cannot request permissions.',
-    );
-  }
-
-  return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.best);
-}
-
 Future main() async {
   await dotenv.load(fileName: ".env");
-  final location = await _determinePosition();
-  runApp(MyApp(currentLocation: location));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Position? currentLocation;
-  const MyApp({super.key, this.currentLocation});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +24,21 @@ class MyApp extends StatelessWidget {
           create: (context) => null,
         )
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(useMaterial3: true),
-        title: 'MiniWork',
-        home: HomePage(location: currentLocation),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => LocationProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => WeatherProvider(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.dark(useMaterial3: true),
+          title: 'MiniWork',
+          home: const HomePage(),
+        ),
       ),
     );
   }
