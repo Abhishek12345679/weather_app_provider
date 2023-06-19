@@ -36,8 +36,17 @@ class _HomePageState extends State<HomePage> {
 }
 
 Widget showLoadingUI() {
-  return const Center(
-    child: CircularProgressIndicator(),
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: Colors.white10.withAlpha(10),
+    ),
+    margin: const EdgeInsets.all(20),
+    child: const Center(
+      child: CircularProgressIndicator(
+        color: Colors.white60,
+      ),
+    ),
   );
 }
 

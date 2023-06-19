@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 
 class LocationProvider extends ChangeNotifier {
   late final Position? currentLocation;
-  bool isLoading = false;
+  bool isLoading = true;
 
   Future<void> getCurrentLocation() async {
     isLoading = true;

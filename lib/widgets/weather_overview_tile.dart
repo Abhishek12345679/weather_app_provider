@@ -14,55 +14,57 @@ class WeatherOverviewTile extends StatelessWidget {
       builder: (context, value, child) => SizedBox(
         height: 200,
         width: double.maxFinite,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.network(
-              'https://openweathermap.org/img/wn/${value.currentWeather.current.weather?[0].icon}@4x.png',
-              width: 150,
-              height: 150,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+        child: !value.loading
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    value.currentWeather.timezone,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Image.network(
+                    'https://openweathermap.org/img/wn/${value.currentWeather!.current.weather?[0].icon}@4x.png',
+                    width: 150,
+                    height: 150,
                   ),
-                  Text(
-                    '${value.currentWeather.current.temp.round()} °C',
-                    style: const TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'Feels like ${value.currentWeather.current.feelsLike.round()} °C',
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    getTimeFromUTC(
-                      DateTime.fromMillisecondsSinceEpoch(
-                        value.currentWeather.current.dt * 1000,
-                      ),
-                    ),
-                    style: const TextStyle(
-                      fontSize: 20,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          value.currentWeather!.timezone,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '${value.currentWeather!.current.temp.round()} °C',
+                          style: const TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'Feels like ${value.currentWeather!.current.feelsLike.round()} °C',
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          getTimeFromUTC(
+                            DateTime.fromMillisecondsSinceEpoch(
+                              value.currentWeather!.current.dt * 1000,
+                            ),
+                          ),
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
-              ),
-            ),
-          ],
-        ),
+              )
+            : showLoadingUI(),
       ),
     );
   }

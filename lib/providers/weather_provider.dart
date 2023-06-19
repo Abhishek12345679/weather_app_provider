@@ -11,8 +11,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class WeatherProvider extends ChangeNotifier {
-  bool loading = false;
-  late final WeatherType currentWeather;
+  bool loading = true;
+  late final WeatherType? currentWeather;
 
   Future<void> getWeather({required Position? location}) async {
     loading = true;
