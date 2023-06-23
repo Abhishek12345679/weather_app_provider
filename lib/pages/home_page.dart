@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app_provider/pages/search_page.dart';
 import 'package:weather_app_provider/providers/location_provider.dart';
 import 'package:weather_app_provider/widgets/weather_grid.dart';
 import 'package:weather_app_provider/widgets/weather_overview_tile.dart';
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
       builder: (context, value, child) =>
-          !value.isLoading ? displayWeather(value) : showLoadingUI(),
+          !value.isLoading ? displayWeather(context, value) : showLoadingUI(),
     );
   }
 }
@@ -50,10 +51,23 @@ Widget showLoadingUI() {
   );
 }
 
-Widget displayWeather(value) {
+Widget displayWeather(BuildContext context, value) {
   return Scaffold(
     appBar: AppBar(
       title: const Text('Today\'s Weather'),
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SearchPage(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.search),
+        )
+      ],
     ),
     body: const Column(
       children: [
