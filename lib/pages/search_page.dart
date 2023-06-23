@@ -25,7 +25,6 @@ class _SearchPageState extends State<SearchPage> {
       ),
     );
     final responseJson = jsonDecode(response.body);
-    log('place: ${responseJson}');
     final places = SearchedPlaceResponse.fromJson(responseJson);
     setState(() {
       searchedPlaces = places.predictions;
@@ -64,6 +63,7 @@ class _SearchPageState extends State<SearchPage> {
           return ListTile(
             title: Text(place.structuredFormatting.mainText),
             subtitle: Text(place.structuredFormatting.secondaryText),
+            onTap: () {},
           );
         },
         itemCount: searchedPlaces.length,
