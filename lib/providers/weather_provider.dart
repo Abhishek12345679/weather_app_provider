@@ -2,19 +2,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
 import 'package:weather_app_provider/models/weather_type.dart';
 
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:weather_app_provider/providers/location_provider.dart';
 
 class WeatherProvider extends ChangeNotifier {
   bool loading = true;
-  late final WeatherType? currentWeather;
+  late WeatherType? currentWeather;
 
-  Future<void> getWeather({required Position? location}) async {
+  Future<WeatherType?> getWeather({required LocCoord? location}) async {
     loading = true;
     final client = http.Client();
     final apiKey = dotenv.env['OPEN_WEATHER_API_KEY'];
@@ -27,8 +27,17 @@ class WeatherProvider extends ChangeNotifier {
     final currentWeatherJSON = json.decode(response.body);
 
     currentWeather = WeatherType.fromMap(currentWeatherJSON);
-    loading = false;
 
     notifyListeners();
+    loading = false;
+    return currentWeather;
+  }
+
+  void setWeather({required WeatherType? weather}) {
+    loading = true;
+    currentWeather = weather;
+
+    notifyListeners();
+    loading = false;
   }
 }

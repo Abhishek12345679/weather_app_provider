@@ -80,7 +80,7 @@ class _WeatherGridState extends State<WeatherGrid> {
                   ),
                   WeatherGridTile(
                     item: CurrentWeatherGridItem(
-                      label: "UV Index",
+                      label: "UV Index 🥵",
                       value: '${value.currentWeather!.current.uvi}',
                     ),
                   ),
@@ -92,7 +92,7 @@ class _WeatherGridState extends State<WeatherGrid> {
                   ),
                   WeatherGridTile(
                     item: CurrentWeatherGridItem(
-                      label: "Wind Speed",
+                      label: "Wind 🌬️",
                       value: '${value.currentWeather!.current.windSpeed}m/s',
                     ),
                   ),

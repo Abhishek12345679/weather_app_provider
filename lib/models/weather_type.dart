@@ -102,7 +102,7 @@ class CurrentWeather {
       sunrise: map['sunrise'] as int,
       sunset: map['sunset'] as int,
       temp: map['temp'] as double,
-      feelsLike: map['feels_like'] as double,
+      feelsLike: map['feels_like'] * 1.0 as double,
       pressure: map['pressure'] as int,
       humidity: map['humidity'] as int,
       dewPoint: map['dew_point'] * 1.0

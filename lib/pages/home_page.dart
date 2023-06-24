@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app_provider/pages/search_page.dart';
@@ -21,10 +23,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
+    super.initState();
+    log('hi');
+
     final provider = Provider.of<LocationProvider>(context, listen: false);
     provider.getCurrentLocation();
+  }
 
-    super.initState();
+  @override
+  void dispose() {
+    final provider = Provider.of<LocationProvider>(context, listen: false);
+    provider.dispose();
+    super.dispose();
   }
 
   @override

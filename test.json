@@ -1,16 +1,54 @@
 {
-  "description": "Paris, France",
-  "matched_substrings": [{ "length": 5, "offset": 0 }],
-  "place_id": "ChIJD7fiBh9u5kcRYJSMaMOCCwQ",
-  "reference": "ChIJD7fiBh9u5kcRYJSMaMOCCwQ",
-  "structured_formatting": {
-    "main_text": "Paris",
-    "main_text_matched_substrings": [{ "length": 5, "offset": 0 }],
-    "secondary_text": "France"
-  },
-  "terms": [
-    { "offset": 0, "value": "Paris" },
-    { "offset": 7, "value": "France" }
+  "results": [
+    {
+      "address_components": [
+        {
+          "long_name": "Ethelbari",
+          "short_name": "Ethelbari",
+          "types": ["neighborhood", "political"]
+        },
+        {
+          "long_name": "Jagijhora Barabak",
+          "short_name": "Jagijhora Barabak",
+          "types": ["locality", "political"]
+        },
+        {
+          "long_name": "Jalpaiguri",
+          "short_name": "Jalpaiguri",
+          "types": ["administrative_area_level_3", "political"]
+        },
+        {
+          "long_name": "Jalpaiguri Division",
+          "short_name": "Jalpaiguri Division",
+          "types": ["administrative_area_level_2", "political"]
+        },
+        {
+          "long_name": "West Bengal",
+          "short_name": "WB",
+          "types": ["administrative_area_level_1", "political"]
+        },
+        {
+          "long_name": "India",
+          "short_name": "IN",
+          "types": ["country", "political"]
+        }
+      ],
+      "formatted_address": "Ethelbari, Jagijhora Barabak, West Bengal, India",
+      "geometry": {
+        "bounds": {
+          "northeast": { "lat": 26.7066665, "lng": 89.09852029999999 },
+          "southwest": { "lat": 26.7011458, "lng": 89.0898943 }
+        },
+        "location": { "lat": 26.7040345, "lng": 89.09314499999999 },
+        "location_type": "APPROXIMATE",
+        "viewport": {
+          "northeast": { "lat": 26.7066665, "lng": 89.09852029999999 },
+          "southwest": { "lat": 26.7011458, "lng": 89.0898943 }
+        }
+      },
+      "place_id": "ChIJXx1aYP-V4zkR_AUWhiqglog",
+      "types": ["neighborhood", "political"]
+    }
   ],
-  "types": ["locality", "political", "geocode"]
+  "status": "OK"
 }
