@@ -24,18 +24,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    log('hi');
 
     final provider = Provider.of<LocationProvider>(context, listen: false);
     provider.getCurrentLocation();
   }
 
-  @override
-  void dispose() {
-    final provider = Provider.of<LocationProvider>(context, listen: false);
-    provider.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   final provider = Provider.of<LocationProvider>(context, listen: false);
+  //   provider.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +60,8 @@ Widget showLoadingUI() {
   );
 }
 
-Widget displayWeather(BuildContext context, value) {
+Widget displayWeather(BuildContext context, LocationProvider value) {
+  log('curloc: ${value.currentLocation}');
   return Scaffold(
     appBar: AppBar(
       title: const Text('Today\'s Weather'),

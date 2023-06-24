@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_app_provider/models/geocoded_place.dart';
 import 'package:weather_app_provider/models/searched_place.dart';
 import 'package:weather_app_provider/providers/location_provider.dart';
+import 'package:weather_app_provider/providers/weather_provider.dart';
 import 'package:weather_app_provider/utils/debouncer.dart';
 
 class SearchPage extends StatefulWidget {
@@ -50,6 +50,9 @@ class _SearchPageState extends State<SearchPage> {
       final locationProvider =
           Provider.of<LocationProvider>(context, listen: false);
 
+      final weatherProvider =
+          Provider.of<WeatherProvider>(context, listen: false);
+
       final coords = geocodedPlace.results[0].geometry.location;
 
       final coordsObj = LocCoord(
@@ -58,14 +61,14 @@ class _SearchPageState extends State<SearchPage> {
       );
       locationProvider.setLocation(coordsObj);
 
-      // final weather = await wProvider.getWeather(
-      //   location: LocCoord(
-      //     latitude: coords.lat,
-      //     longitude: coords.lng,
-      //   ),
-      // );
+      final weather = await weatherProvider.getWeather(
+        location: LocCoord(
+          latitude: coords.lat,
+          longitude: coords.lng,
+        ),
+      );
 
-      // wProvider.setWeather(weather: weather);
+      weatherProvider.setWeather(weather: weather);
     }
   }
 
