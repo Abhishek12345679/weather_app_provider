@@ -1,0 +1,27 @@
+image: cirrusci/flutter:latest
+pipelines:
+  branches:
+    master:
+      - step:
+          max-time: 120
+          size: "2x"
+          script:
+            - flutter pub get
+            - flutter analyze
+            - flutter build apk
+          trigger: automatic
+          artifacts:
+            - "build/app/outputs/apk/release/*"
+
+  pull-requests:
+    "**":
+      - step:
+          max-time: 120
+          size: "2x"
+          script:
+            - flutter pub get
+            - flutter analyze
+            - flutter build apk
+          trigger: automatic
+          artifacts:
+            - "build/app/outputs/apk/release/*"
